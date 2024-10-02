@@ -15,7 +15,6 @@ passport.use(new localStrategy(
             if(!user) {
                 return done(null, false, { message: 'Invalid credentials!' });
             }
-            console.log(user.password);
             const isMatch = await bcrypt.compareSync(password, user.password);
             if (!isMatch) {
                 return done(null, false, { message: 'Invalid credentials.' });

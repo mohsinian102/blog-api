@@ -17,9 +17,9 @@ router.post('/login', (req, res, next) => {
             if (err) {
                 return res.status(500).json({ message: 'Internal Server Error' });
             }
-            return res.status(200).json({ message: 'Successfully logged in', user });
+            return authController.login(req, res);
         });
-    })(req, res, next);
+    })(req, res, next)
 });
 router.post('/logout', authController.logout);
 
