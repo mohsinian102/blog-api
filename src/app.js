@@ -1,6 +1,7 @@
 const express = require('express');
 const {PrismaClient} = require('@prisma/client');
 const authRoutes = require('./routes/authRoutes');
+const postRoutes = require('./routes/postRoutes');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config({ path:'../.env' });
 const session = require('express-session');
@@ -24,5 +25,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', authRoutes);
+app.use('/posts', postRoutes);
 
 module.exports = app;
