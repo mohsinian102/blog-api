@@ -28,6 +28,12 @@ exports.login = (req,res) => {
 }
 
 exports.logout = (req,res) =>{
-    req.logout();
-    res.status(200).json({message: "successfully logged out"});
+    req.logout(function(err){
+        if(err) {
+            return next(err);
+        }
+        else 
+        res.status(200).json({message: "successfully logged out"});
+    });
+    
 }
