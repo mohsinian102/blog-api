@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
     secret: process.env.JWT_SECRET,
