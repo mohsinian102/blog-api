@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config({ path:'../.env' });
 const session = require('express-session');
 const passport = require('passport');
+const cors = require('cors');
 require('./services/passportConfig');
 
 const prisma = new PrismaClient();
@@ -26,5 +27,11 @@ app.use(passport.session());
 
 app.use('/auth', authRoutes);
 app.use('/posts', postRoutes);
+
+app.use(cors({
+  origin: 'http://localhost:5001',
+  credentials: true
+}));
+
 
 module.exports = app;
