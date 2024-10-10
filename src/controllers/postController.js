@@ -4,8 +4,7 @@ const prisma = new PrismaClient();
 exports.getAll = async (req, res) => {
     try {
         const allPosts = await prisma.post.findMany();
-        console.log(allPosts);
-        res.status(200).json({posts: allPosts});
+        res.status(200).json(allPosts);
     } catch (err) {
         return res.status(400).json({error: `${err}`});
     }
