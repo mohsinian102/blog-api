@@ -1,6 +1,16 @@
 const {PrismaClient} = require ('@prisma/client');
 const prisma = new PrismaClient();
 
+exports.getAll = async (req, res) => {
+    try {
+        const allPosts = await prisma.post.findMany();
+        console.log(allPosts);
+        res.status(200).json({posts: allPosts});
+    } catch (err) {
+        return res.status(400).json({error: `${err}`});
+    }
+};
+
 exports.createPost = async (req, res) => {
     const {title, content} = req.body;
     try {
