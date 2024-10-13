@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 
 exports.register = async (req,res) => {
     const {email, password} = req.body;
+    console.log(req.body);
     try {
         const hashedPass = await bcrypt.hash(password, 10);
         const newUser = await prisma.user.create(
@@ -39,5 +40,15 @@ exports.logout = (req,res) =>{
     }
     else {
         res.status(400).json({message: "You are not even logged in!"});
+    }
+}
+
+exports.loggedStatus = (req, res) => {
+    console.log(req);
+    if(req.isAuthenticated()) {
+        res.status(200).json(true);
+    }
+    else {
+        res.status(200).json(false);
     }
 }

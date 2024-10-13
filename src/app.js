@@ -18,7 +18,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
     secret: process.env.JWT_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+      secure: false,
+      httpOnly: true,
+      sameSite: 'None'
+  }
 
 }));
 

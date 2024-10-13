@@ -4,6 +4,7 @@ const passport = require('passport');
 
 const router = express.Router();
 
+router.get('/status', authController.loggedStatus);
 router.post('/register', authController.register);
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
