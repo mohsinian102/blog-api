@@ -44,7 +44,6 @@ exports.logout = (req,res) =>{
 }
 
 exports.loggedStatus = (req, res) => {
-    console.log(req);
     if(req.isAuthenticated()) {
         res.status(200).json(true);
     }

@@ -11,9 +11,15 @@ require('./services/passportConfig');
 
 const prisma = new PrismaClient();
 const app = express();
+app.use(cors({
+  origin: 'http://127.0.0.1:5173',
+  credentials: true
+}));
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.use(session({
     secret: process.env.JWT_SECRET,
@@ -22,7 +28,7 @@ app.use(session({
     cookie: {
       secure: false,
       httpOnly: true,
-      sameSite: 'None'
+      sameSite: 'lax'
   }
 
 }));
@@ -32,11 +38,6 @@ app.use(passport.session());
 
 app.use('/auth', authRoutes);
 app.use('/posts', postRoutes);
-
-app.use(cors({
-  origin: 'http://localhost:5001',
-  credentials: true
-}));
 
 
 module.exports = app;

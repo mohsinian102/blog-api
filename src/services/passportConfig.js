@@ -11,6 +11,7 @@ passport.use(new localStrategy(
     },
     async (email, password, done) => {
         try {
+            console.log(email);
             const user = await prisma.user.findUnique( { where: {email} } );
             if(!user) {
                 return done(null, false, { message: 'Invalid credentials!' });
